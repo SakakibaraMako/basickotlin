@@ -35,6 +35,14 @@ class HomeworkTest {
             assertEquals(whenFn(k), v)
         }
     }
+    // 1st additional test
+    @Test fun when_Good() {
+        assertEquals(whenFn("Good"), "Say what?")
+    }
+    // 2nd additional test
+    @Test fun when_double() {
+        assertEquals(whenFn(2.2), "I don't understand")
+    }
 
     // =================
     // add/sub/mathOp tests
@@ -69,6 +77,34 @@ class HomeworkTest {
         assertEquals(16, mathOp(4, 4, { l,r -> l*r} ))
     }
 
+    // 3rd additional test
+    @Test fun add_test() {
+        val add_tests = listOf(
+            Pair(-5, -4) to -9,
+            Pair(11, 2) to 13
+        )
+        for ( (k,v) in add_tests) {
+            assertEquals(add(k.first, k.second), v)
+        }
+    }
+
+    // 4th additional test
+    @Test fun sub_test() {
+        val sub_tests = listOf(
+            Pair(-5, -4) to -1,
+            Pair(11, 2) to 9
+        )
+        for ( (k,v) in sub_tests) {
+            assertEquals(sub(k.first, k.second), v)
+        }
+    }
+
+    // 5th additional test
+    @Test fun mathOp_tests2() {
+        assertEquals(100, mathOp(45, 55, { l,r -> l+r} ))
+        assertEquals(0, mathOp(2, 2, ::sub ))
+    }
+
     // =================
     // Person tests
     @Test fun Person_tests() {
@@ -76,6 +112,15 @@ class HomeworkTest {
         assertEquals("Ted", p1.firstName )
         assertEquals(48, p1.age)
         assertEquals("[Person firstName:Ted lastName:Neward age:48]", p1.debugString)
+    }
+
+    // 6th additional test
+    @Test fun Person_test2() {
+        val p = Person("Terrence", "Quan", 22)
+        assertEquals("Terrence", p.firstName)
+        assertEquals("Quan", p.lastName)
+        assertEquals(22, p.age)
+        assertEquals("[Person firstName:Terrence lastName:Quan age:22]", p.debugString)
     }
 
     // =================
@@ -118,5 +163,13 @@ class HomeworkTest {
             assertEquals(result.amount, (pair.first + pair.second).amount)
             assertEquals(result.currency, (pair.first + pair.second).currency)
         }
+    }
+
+    // 7th additional test
+    @Test fun Money_addTests2() {
+        var money1 = Money(10, "USD")
+        var money2 = Money(15, "EUR")
+        assertEquals(20, (money1 + money2).amount)
+        assertEquals("USD", (money1 + money2).currency)
     }
 }
